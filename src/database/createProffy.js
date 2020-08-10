@@ -5,12 +5,13 @@ module.exports = async function(db, {proffyValue, classValue, classScheduleValue
         INSERT INTO proffys (
             name,
             avatar,
+            whatsapp,
             bio
         ) VALUES (
-            ${proffyValue.name}, 
-            ${proffyValue.avatar}, 
-            ${proffyValue.whatsapp}, 
-            ${proffyValue.bio}
+            "${proffyValue.name}",
+            "${proffyValue.avatar}",
+            "${proffyValue.whatsapp}",
+            "${proffyValue.bio}"
         );
     `)
 
@@ -24,9 +25,9 @@ module.exports = async function(db, {proffyValue, classValue, classScheduleValue
             cost,
             proffy_id
         ) VALUES (
-            ${classValue.subject}, 
-            ${classValue.cost}, 
-            ${classValue.proffy_id}
+            "${classValue.subject}",
+            "${classValue.cost}",
+            "${classValue.proffy_id}"
         );                  
     `)
 
@@ -34,7 +35,7 @@ module.exports = async function(db, {proffyValue, classValue, classScheduleValue
 
     // Inserir dados na tabela class_schhedule
 
-    const InsertedAllClassScheduleValues = classScheduleValues.map((classScheduleValue) => {
+    const InsertedAllClassScheduleValues = classScheduleValues.map((classScheduleValues) => {
         return db.run(`
             INSERT INTO class_schedule (
                 class_id,
@@ -42,10 +43,10 @@ module.exports = async function(db, {proffyValue, classValue, classScheduleValue
                 time_from,
                 time_to
             ) VALUES (
-                ${class_id},
-                ${classScheduleValue.weekday},
-                ${classScheduleValue.time_from},
-                ${classScheduleValue.time_to},
+                "${class_id}",
+                "${classScheduleValue.weekday}",
+                "${classScheduleValue.time_from}",
+                "${classScheduleValue.time_to}"
             );
         `)
     })
