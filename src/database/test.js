@@ -14,7 +14,7 @@ Database.then(async (db) => {
         cost: "20",
         // proffy_id virá pelo banco de dados
     }
-    classScheduleValue = [
+    classScheduleValues = [
         // class_id virá pelo banco de dados, após cadastrarmos a class
         {
             weekday: 1,
@@ -29,6 +29,6 @@ Database.then(async (db) => {
     ]
 
 
-    await createProffy(db, {proffyValue, classValue, classScheduleValue})
+    await createProffy(db, {proffyValue, classValue, classScheduleValues})
     // Consultar os dados inseridos
 })
