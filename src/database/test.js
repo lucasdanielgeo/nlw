@@ -1,6 +1,7 @@
 const Database = require('./db')
 const createProffy = require('./createProffy')
 
+
 Database.then(async (db) => {
     // Inserir dados
     proffyValue = {
@@ -9,11 +10,13 @@ Database.then(async (db) => {
         whatsapp: "48998097486",
         bio:"Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através de experiências. Mais de 200.000 pessoas já passaram por uma das minhas explosões."
     }
+
     classValue = {
         subject:"Química", 
         cost: "20",
         // proffy_id virá pelo banco de dados
     }
+
     classScheduleValues = [
         // class_id virá pelo banco de dados, após cadastrarmos a class
         {
@@ -28,7 +31,23 @@ Database.then(async (db) => {
         }
     ]
 
+    // deixar só quando for executar
+    // await createProffy(db, {proffyValue, classValue, classScheduleValues})
 
-    await createProffy(db, {proffyValue, classValue, classScheduleValues})
     // Consultar os dados inseridos
+
+    // const selectedProffys = await db.all("SELECT * FROM proffys")
+    // console.log(selectedProffys)
+
+    // consultar as classes de um determinado proffy
+    // e trazer junto, os dados do proffy
+
+    const selectedClassesAndProffys = await db.all(`
+        SELECT classes.*, proffys.*
+        FROM proffys
+        JOIN classes ON (classes.proffy_id = proffys.id)
+        WHERE classes.proffy_id = 1;
+    `)
+    console.log(selectedClassesAndProffys)
+
 })
