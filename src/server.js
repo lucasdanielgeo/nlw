@@ -17,7 +17,7 @@ nunjucks.configure('src/views', {
 })
 // Início e configurações do servidor
 server
-// receber os dados do req.body (qeu são eviados no fomrulário e aparecem no endereço)
+// receber os dados do req.body (que são enviados no formulário e aparecem no endereço)
 .use(express.urlencoded({extended: true}))
 // configurar arquivos estáticos (css, scripts, imagens)
 .use(express.static("public"))
